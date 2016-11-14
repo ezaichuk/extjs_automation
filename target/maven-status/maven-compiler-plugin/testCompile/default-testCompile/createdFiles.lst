@@ -1,0 +1,6 @@
+test\TestNgTestBase.class
+test\LeftList.class
+test\pages\HomePage.class
+test\SampleTestNgTest.class
+test\util\PropertyLoader.class
+test\pages\Page.class
