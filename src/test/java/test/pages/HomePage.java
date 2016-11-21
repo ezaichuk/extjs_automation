@@ -22,7 +22,13 @@ public class HomePage extends Page {
   @FindBy(how = How.ID, using = "treeview-1017-table")
   public WebElement leftLettersTable;
 
+  @FindBy(how = How.ID, using = "headercontainer-1019")
+  public WebElement rightLettersTable;
 
+  @FindBy(how = How.ID, using = "headercontainer-1019-innerCt")
+  public WebElement rightLettersTableHeader;
+
+  
   public HomePage(WebDriver webDriver) {
     super(webDriver);
   }
@@ -68,5 +74,32 @@ public class HomePage extends Page {
       }
     }
 
+  }
+
+  public void CheckAllCheckbox()
+  {
+    List<WebElement> tableRows = rightLettersTableHeader.findElements(By.tagName("div"));
+
+    for (int i=0; i<tableRows.size(); ++i)
+    {
+      if (tableRows.get(i).findElement(By.className("x-column-header-inner")).getText().equals(" "))
+      {
+        tableRows.get(i).findElement(By.className("x-column-header-inner")).click();
+        i = tableRows.size();
+      }
+
+    }
+  }
+
+  public boolean IsCheckedAllRightLettersList()
+  {
+    boolean isChecked = false;
+
+    List<WebElement> tableRows = rightLettersTableHeader.findElements(By.tagName("div"));
+
+    if (tableRows.get(0).findElement(By.className("x-column-header-text")).getCssValue("background-position-y").equals("-13px"))
+      isChecked = true;
+
+    return isChecked;
   }
 }
